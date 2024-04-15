@@ -9,7 +9,7 @@ export function SwapPage() {
     const fileInputRef1 = useRef(null);
     const fileInputRef2 = useRef(null);
 
-    const handleImageUpload = (event, setImage) => {
+    const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>, setImage) => {
         const file = event.target.files[0];
         const reader = new FileReader();
 
