@@ -189,7 +189,7 @@ func uploadS3ByURL(url string) (string, error) {
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
 		if err != nil {
-
+			fmt.Println("Error closing response body:", err)
 		}
 	}(resp.Body)
 

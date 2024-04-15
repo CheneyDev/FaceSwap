@@ -4,6 +4,7 @@ import (
 	"face-swap/config"
 	"face-swap/controllers"
 	"face-swap/migrations"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"log"
@@ -24,6 +25,15 @@ func main() {
 
 	// 初始化 Gin
 	r := gin.Default()
+
+	// 配置 CORS
+	defaultConfig := cors.DefaultConfig()
+	defaultConfig.AllowOrigins = []string{"http://localhost:3000"}
+	defaultConfig.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "HEAD"}
+	defaultConfig.AllowHeaders = []string{"Content-Type", "Authorization", "Origin", "X-Requested-With"}
+	defaultConfig.AllowCredentials = true
+
+	r.Use(cors.New(defaultConfig))
 
 	// 注册路由
 	r.POST("/api/image_swap_records", controllers.CreateImageSwapRecord)
