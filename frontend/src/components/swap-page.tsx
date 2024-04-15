@@ -1,7 +1,7 @@
 "use client";
-import React, { useRef, useState } from 'react';
-import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import React, {useRef, useState} from 'react';
+import {AvatarImage, AvatarFallback, Avatar} from "@/components/ui/avatar";
+import {Button} from "@/components/ui/button";
 
 export function SwapPage() {
     const [image1, setImage1] = useState(null);
@@ -56,7 +56,12 @@ export function SwapPage() {
     return (
         <div className="max-w-4xl mx-auto p-4">
             <header className="flex justify-between items-center border-b pb-2">
-                <h1 className="text-xl font-bold">FaceSwap AI</h1>
+                <h1 className="text-xl font-bold">
+                    <span
+                        className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+                        FaceSwap AI
+                    </span>
+                </h1>
                 <div className="flex items-center space-x-2">
                     <span>username</span>
                     <Avatar>
