@@ -1,18 +1,18 @@
 package migrations
 
 import (
-	"face-swap/database"
+	"face-swap/config"
 	"face-swap/models"
 )
 
 func Migrate() {
 	// 自动迁移模式
-	database.DB.AutoMigrate(&models.ImageSwapRecord{})
+	config.DB.AutoMigrate(&models.ImageSwapRecord{})
 
 	// 检查表是否存在
-	if !database.DB.Migrator().HasTable(&models.ImageSwapRecord{}) {
+	if !config.DB.Migrator().HasTable(&models.ImageSwapRecord{}) {
 		// 创建表
-		if err := database.DB.Migrator().CreateTable(&models.ImageSwapRecord{}); err != nil {
+		if err := config.DB.Migrator().CreateTable(&models.ImageSwapRecord{}); err != nil {
 			panic("failed to create image_swap_record table")
 		}
 	}

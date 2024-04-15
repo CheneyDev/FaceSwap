@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"face-swap/database"
+	"face-swap/config"
 	"face-swap/models"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -18,7 +18,7 @@ func CreateImageSwapRecord(c *gin.Context) {
 	}
 	//打印record
 	fmt.Println("Received record:", record)
-	if err := database.DB.Create(&record).Error; err != nil {
+	if err := config.DB.Create(&record).Error; err != nil {
 		fmt.Println("Error creating record:", err) // 打印错误信息
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create record"})
 		return
@@ -29,14 +29,14 @@ func CreateImageSwapRecord(c *gin.Context) {
 // GetImageSwapRecords 获取所有记录
 func GetImageSwapRecords(c *gin.Context) {
 	var records []models.ImageSwapRecord
-	database.DB.Find(&records)
+	config.DB.Find(&records)
 	c.JSON(200, records)
 }
 
 // GetImageSwapRecord 获取单个记录
 func GetImageSwapRecord(c *gin.Context) {
 	var record models.ImageSwapRecord
-	if err := database.DB.Where("id = ?", c.Param("id")).First(&record).Error; err != nil {
+	if err := config.DB.Where("id = ?", c.Param("id")).First(&record).Error; err != nil {
 		c.JSON(404, gin.H{"error": "Record not found"})
 		return
 	}
@@ -46,7 +46,7 @@ func GetImageSwapRecord(c *gin.Context) {
 // UpdateImageSwapRecord 更新记录
 func UpdateImageSwapRecord(c *gin.Context) {
 	var record models.ImageSwapRecord
-	if err := database.DB.Where("id = ?", c.Param("id")).First(&record).Error; err != nil {
+	if err := config.DB.Where("id = ?", c.Param("id")).First(&record).Error; err != nil {
 		c.JSON(404, gin.H{"error": "Record not found"})
 		return
 	}
@@ -54,17 +54,17 @@ func UpdateImageSwapRecord(c *gin.Context) {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
-	database.DB.Save(&record)
+	config.DB.Save(&record)
 	c.JSON(200, record)
 }
 
 // DeleteImageSwapRecord 删除记录
 func DeleteImageSwapRecord(c *gin.Context) {
 	var record models.ImageSwapRecord
-	if err := database.DB.Where("id = ?", c.Param("id")).First(&record).Error; err != nil {
+	if err := config.DB.Where("id = ?", c.Param("id")).First(&record).Error; err != nil {
 		c.JSON(404, gin.H{"error": "Record not found"})
 		return
 	}
-	database.DB.Delete(&record)
+	config.DB.Delete(&record)
 	c.JSON(200, gin.H{"message": "Record deleted"})
 }

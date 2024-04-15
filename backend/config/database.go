@@ -1,4 +1,4 @@
-package database
+package config
 
 import (
 	"fmt"
@@ -21,7 +21,7 @@ func ConnectDB() {
 		host, user, password, dbname, port)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		panic("failed to connect database")
+		panic("failed to connect config")
 	}
 	DB = db
 }

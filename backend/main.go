@@ -1,8 +1,8 @@
 package main
 
 import (
+	"face-swap/config"
 	"face-swap/controllers"
-	"face-swap/database"
 	"face-swap/migrations"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -17,7 +17,7 @@ func main() {
 	}
 
 	// 建立数据库连接
-	database.ConnectDB()
+	config.ConnectDB()
 
 	// 运行数据库迁移
 	migrations.Migrate()
@@ -31,6 +31,8 @@ func main() {
 	r.GET("/api/image_swap_records/:id", controllers.GetImageSwapRecord)
 	r.PUT("/api/image_swap_records/:id", controllers.UpdateImageSwapRecord)
 	r.DELETE("/api/image_swap_records/:id", controllers.DeleteImageSwapRecord)
+
+	r.POST("/api/swap", controllers.SwapImage)
 
 	// 启动服务器
 	r.Run()
