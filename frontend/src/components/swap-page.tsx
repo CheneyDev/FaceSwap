@@ -1,15 +1,21 @@
 "use client";
-import React, { useRef, useState } from 'react';
-import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import React, {useRef, useState} from "react";
+import {AvatarImage, AvatarFallback, Avatar} from "@/components/ui/avatar";
+import {Button} from "@/components/ui/button";
+import {SubmitDialog} from "./SubmitDialog";
 
 export function SwapPage() {
     const [image1, setImage1] = useState<string | null>(null);
     const [image2, setImage2] = useState<string | null>(null);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [resultImage, setResultImage] = useState<string | null>(null);
     const fileInputRef1 = useRef<HTMLInputElement | null>(null);
     const fileInputRef2 = useRef<HTMLInputElement | null>(null);
 
-    const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>, setImage: (value: string | null) => void) => {
+    const handleImageUpload = (
+        event: React.ChangeEvent<HTMLInputElement>,
+        setImage: (value: string | null) => void
+    ) => {
         const file = event.target.files?.[0];
         const reader = new FileReader();
 
@@ -28,6 +34,8 @@ export function SwapPage() {
 
     const handleSubmit = async () => {
         if (image1 && image2) {
+            setIsDialogOpen(true);
+
             const base64Image1 = image1;
             const base64Image2 = image2;
 
@@ -46,32 +54,29 @@ export function SwapPage() {
                 });
 
                 if (response.ok) {
+                    const data = await response.json();
+                    setResultImage(data.ResultImage);
                     console.log("Images uploaded successfully");
-                    // 处理上传成功的逻辑
                 } else {
                     console.error("Image upload failed");
-                    // 处理上传失败的逻辑
                 }
             } catch (error) {
                 console.error("Error uploading images:", error);
-                // 处理错误
             }
         }
     };
-
-
     return (
         <div className="max-w-4xl mx-auto p-4">
             <header className="flex justify-between items-center border-b pb-2">
                 <h1 className="text-xl font-bold">
-          <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-            FaceSwap AI
-          </span>
+                    <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+                        FaceSwap AI
+                    </span>
                 </h1>
                 <div className="flex items-center space-x-2">
                     <span>username</span>
                     <Avatar>
-                        <AvatarImage alt="user avatar" src="/placeholder.svg?height=32&width=32" />
+                        <AvatarImage alt="user avatar" src="/placeholder.svg?height=32&width=32"/>
                         <AvatarFallback>U</AvatarFallback>
                     </Avatar>
                 </div>
@@ -99,7 +104,7 @@ export function SwapPage() {
                             type="file"
                             ref={fileInputRef1}
                             onChange={(e) => handleImageUpload(e, setImage1)}
-                            style={{ display: 'none' }}
+                            style={{display: "none"}}
                         />
                         Click to upload image
                     </div>
@@ -124,17 +129,24 @@ export function SwapPage() {
                             type="file"
                             ref={fileInputRef2}
                             onChange={(e) => handleImageUpload(e, setImage2)}
-                            style={{ display: 'none' }}
+                            style={{display: "none"}}
                         />
                         Click to upload image
                     </div>
                 </div>
                 <div className="flex justify-center mt-8">
-                    <Button className="w-32" onClick={handleSubmit}>
+                    <Button className="w-32" onClick={() => handleSubmit()}>
                         Submit
                     </Button>
                 </div>
             </main>
+            {isDialogOpen && (
+                <SubmitDialog
+                    open={isDialogOpen}
+                    onClose={() => setIsDialogOpen(false)}
+                    resultImage={resultImage}
+                />
+            )}
         </div>
     );
 }
