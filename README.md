@@ -1,4 +1,4 @@
-<img src="./assets/README/image-20240416110242995.png" alt="image-20240416110242995" style="zoom:67%;" />
+<img src="./assets/README/image-20240416110242995.png" alt="image-20240416110242995" style="width:50%;" />
 
 # FaceSwap
 
