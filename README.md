@@ -27,9 +27,3 @@ FaceSwap 是一个能够将任何人脸图片转换到另一张图片中的工�
 | 数据库：Postgres                  | [Supabase](https://supabase.com/)                            |
 | 对象存储：CloudFlare R2           | [CloudFlare](https://www.cloudflare.com/developer-platform/r2/) |
 | 换脸 API：fofr/become-image       | [Replicate](https://replicate.com/fofr/become-image)         |
-
-## 演示视频
-
-
-<video src="https://content.qqdd.dev/demo.mp4" controls="controls"></video>
-
