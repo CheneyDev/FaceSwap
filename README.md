@@ -30,5 +30,5 @@ FaceSwap 是一个能够将任何人脸图片转换到另一张图片中的工�
 
 ## 演示视频
 
-<video src="../../Desktop/Screen%20Recording%202024-04-16%20at%2011.33.22%E2%80%AFAM.mov"></video>
+<video src="./assets/README/demo.mov"></video>
 
