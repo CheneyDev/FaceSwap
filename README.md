@@ -1,4 +1,4 @@
-![image-20240416110242995](./assets/README/image-20240416110242995.png)
+<img src="./assets/README/image-20240416110242995.png" alt="image-20240416110242995" style="zoom:67%;" />
 
 # FaceSwap
 
@@ -19,14 +19,14 @@ FaceSwap是一个能够将任何人脸图片转换到另一张图片中的工具
 
 ## 技术栈和服务
 
-| 技术/工具                                                   | 部署/服务                                                    |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| 后端：Go Gin Gorm                                           | [Render](https://render.com/)                                |
-| 前端：Next.js                                               | [Vercel](https://vercel.com/)                                |
-| 样式组件：Tailwind CSS, [shadcn/ui](https://ui.shadcn.com/) |                                                              |
-| 数据库：Postgres                                            | [Supabase](https://supabase.com/)                            |
-| 对象存储：CloudFlare R2                                     | [CloudFlare](https://www.cloudflare.com/developer-platform/r2/) |
-| 换脸 API：fofr/become-image                                 | [Replicate](https://replicate.com/fofr/become-image)         |
+| 技术/工具                         | 部署/服务                                                    |
+| --------------------------------- | ------------------------------------------------------------ |
+| 后端：Go Gin Gorm                 | [Render](https://render.com/)                                |
+| 前端：Next.js                     | [Vercel](https://vercel.com/)                                |
+| 样式组件：Tailwind CSS  shadcn/ui |                                                              |
+| 数据库：Postgres                  | [Supabase](https://supabase.com/)                            |
+| 对象存储：CloudFlare R2           | [CloudFlare](https://www.cloudflare.com/developer-platform/r2/) |
+| 换脸 API：fofr/become-image       | [Replicate](https://replicate.com/fofr/become-image)         |
 
 
 
