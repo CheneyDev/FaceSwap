@@ -45,7 +45,7 @@ export function SwapPage() {
             };
 
             try {
-                const response = await fetch("http://localhost:8080/api/swap", {
+                const response = await fetch("https://api.swap.qqdd.dev/api/swap", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

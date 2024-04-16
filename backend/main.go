@@ -28,7 +28,7 @@ func main() {
 
 	// 配置 CORS
 	defaultConfig := cors.DefaultConfig()
-	defaultConfig.AllowOrigins = []string{"http://localhost:3000"}
+	defaultConfig.AllowOrigins = []string{"http://localhost:3000", "https://api.swap.qqdd.dev"}
 	defaultConfig.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "HEAD"}
 	defaultConfig.AllowHeaders = []string{"Content-Type", "Authorization", "Origin", "X-Requested-With"}
 	defaultConfig.AllowCredentials = true
